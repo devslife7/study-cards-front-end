@@ -19,7 +19,7 @@ const loginHandler = (e) =>
   setUser(username);
 }
 
-const renderUserHomepage = () =>
+const renderDashboard = () =>
 {
   console.log(currentUser);
 }
