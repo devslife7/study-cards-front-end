@@ -33,6 +33,6 @@ const setUser = (inp) =>
   .then(user => 
   {
     currentUser = user
-    renderUserHomepage();
+    renderDashboard();
   })
 }
