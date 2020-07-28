@@ -1,20 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study Cards</title>
-  <script defer src="./JS/index.js"></script>
-</head>
-<body>
-  <!-- nav bar here -->
-  <div id="login-container">
-    <h2>Login</h2>
-    <form id="login-form">
-      <input id="login-inp" type="text" placeholder="username"><br>
-      <button id="submit-login" type="submit">Login</button><button>signup</button>
-    </form>
-    
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Cards</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="./JS/index.js"></script>
+  </head>
+  <body>
+    <!-- nav bar here -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img
+            src="https://cdn1.iconfinder.com/data/icons/casino-solid-royal-straight-flush/512/Cards-512.png"
+            width="40"
+            height="30"
+          />
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">Dashboard</a>
+          <a class="navbar-item">Courses</a>
+          <!-- <a class="navbar-item">Cards</a> -->
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container login">Login part</div>
+
+    <!-- login here -->
+    <div id="login-container">
+      <h2>Login</h2>
+      <form id="login-form">
+        <input id="login-inp" type="text" placeholder="username" /><br />
+        <button id="submit-login" type="submit">Login</button>
+      </form>
+      <br /><br /><br />
+      <button>signup</button>
+    </div>
+  </body>
 </html>
