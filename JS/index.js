@@ -13,8 +13,7 @@ const renderLogin = () =>
 const loginHandler = (e) =>
 {
   e.preventDefault();
-  console.log(e.target);
+  const username = e.target.querySelector("input#login-inp").value;
+  console.log(username);
 }
-
-//login handle
 
