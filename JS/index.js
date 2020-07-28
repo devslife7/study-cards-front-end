@@ -3,6 +3,12 @@ const loginDiv = document.getElementById('login-container');
 const loginForm = loginDiv.querySelector("form#login-form");
 loginDiv.style.display = "none";
 
+loginForm.addEventListener("submit",e => loginHandler(e));
+
+const renderLogin = () =>
+{
+  loginDiv.style.display = "initial";
+}
 //when login button clicked
 const loginHandler = (e) =>
 {
@@ -11,4 +17,4 @@ const loginHandler = (e) =>
 }
 
 //login handle
-loginForm.addEventListener("submit",e => loginHandler(e));
+
