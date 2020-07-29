@@ -1,0 +1,43 @@
+body {
+  
+}
+
+.new-card.page
+{
+  
+  min-width: 800;
+  min-width: 1200;
+}
+
+#new-card-form
+{
+  
+  min-width: 700px;  
+}
+
+.card-row{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  height: 200px;
+  background-color: rgb(146, 146, 146);
+}
+.new.card.cell
+{
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.control.new.card.element
+{
+  flex-direction: column;
+  width: 100px;
+  height: 70px;
+}
+.new.card.input.element
+{
+  width: 400px;
+  height: 100px;
+  
+}

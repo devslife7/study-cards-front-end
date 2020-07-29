@@ -77,3 +77,29 @@ a.navbar-item:hover {
   color: black;
   text-shadow: white 0px 0px 7px;
 }
+
+/* .container.new-card.page {
+  align-items: center;
+  justify-content: space-evenly;
+} */
+
+/* .card-input {
+  height: 100px;
+  width: 40%; 
+}*/
+
+div#card-form {
+
+}
+.card-row {
+  
+  /* display: flex;
+  column-count: 2;
+  column-width: auto; 
+  float: left;
+  width: 90%;
+  */
+}
+.new.card.cell  {
+  /* display: flex; */
+}
