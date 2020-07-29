@@ -1,0 +1,25 @@
+div#course-container{
+  width: 25%;
+  float: left;
+}
+div#cards-grid {
+  width: 90%;
+  float: right;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+h2 strong {
+  text-shadow: 2px 2px green;
+}
+
+li{
+  /* display: inline; */
+  padding-top: 10%;
+  padding-bottom: 10%;
+  background-color: rgb(210, 250, 129);
+}
+ li:hover{
+  background-color: yellowgreen;
+  border: solid;
+  border-color: grey;
+}
