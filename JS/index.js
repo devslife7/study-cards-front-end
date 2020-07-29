@@ -49,6 +49,16 @@ const renderDashboard = () => {
   currentUser.renderCourses(courseList);
 }
 
+//user creates new cards for a course
+const renderNewCard = (course) =>
+{
+  showPage("new-card");
+  const cardList = currentPageDiv.querySelector("div#card-list");
+  console.log(cardList);
+
+}
+
+//handler for listener added on li's in Course:renderCourse(ul)
 const courseLiHandler = course => {
   console.log(course)
 }
