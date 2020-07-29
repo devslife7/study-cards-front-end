@@ -2,7 +2,7 @@ const USER_URL = 'http://localhost:3000/users/'
 
 const pageDivs = document.getElementsByClassName('page')
 
-let currentUser
+let currentUser;//User object made from User class
 let currentPageDiv
 
 //runner method for this file
@@ -46,17 +46,11 @@ const renderDashboard = () => {
   const courseList = currentPageDiv.querySelector('ul#course-list')
   courseList.innerHTML = ''
 
-  currentUser.courses.forEach(course => {
-    const li = document.createElement('li')
-    li.innerText = course.name
-    li.dataset.course_id = course.id
-    courseList.append(li)
-    li.addEventListener('click', () => courseLiHandler(course))
-  })
+  currentUser.renderCourses(courseList);
 }
 
-const courseLiHandler = courseObj => {
-  console.log(courseObj)
+const courseLiHandler = course => {
+  console.log(course)
 }
 
 const fetchUserThenRender = inp => {
@@ -65,7 +59,7 @@ const fetchUserThenRender = inp => {
   fetch(url)
     .then(r => r.json())
     .then(user => {
-      currentUser = user
+      currentUser = new User(user)
       renderDashboard()
     })
 }
