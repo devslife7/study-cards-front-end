@@ -1,10 +1,79 @@
+body {
+  background-image: url('./study-background2.jpg');
+  height: 1300px;
+  position: relative;
+  padding-bottom: 400px;
+  min-height: 100vh;
+}
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
 .navbar {
   margin-left: 17%;
   margin-right: 17%;
+  background-color: transparent;
 }
 .container {
   margin-left: 18%;
+  margin-right: 18%;
 }
-body {
-  margin-left: 20%;
+.homepage-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 130px;
+  /* background-color: gray; */
+}
+.carousel-container {
+  background-color: red;
+}
+#login-form {
+  /* height: 400px; */
+  /* background-color: green; */
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.divider {
+  width: 2px;
+  margin: 6px 0;
+  background: gray;
+}
+.field button {
+  margin: 10px;
+}
+.carousel-inner {
+  height: 400px;
+  width: 400px;
+}
+.carousel-item img {
+  border-radius: 10px;
+
+  height: 400px;
+  width: 400px;
+}
+.carousel-inner p {
+  font-size: 25px;
+  font-weight: bold;
+  text-shadow: black 0px 0px 10px;
+}
+.navbar-item {
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+a.navbar-item:hover {
+  background-color: transparent;
+  border-radius: 5px;
+  color: white;
+  font-size: 17.3px;
+  text-shadow: black 0px 0px 8px;
+}
+.login-title {
+  margin-bottom: 0px;
+  color: black;
+  text-shadow: white 0px 0px 7px;
 }
