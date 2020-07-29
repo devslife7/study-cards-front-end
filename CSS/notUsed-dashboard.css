@@ -1,12 +1,12 @@
 div#course-container{
-  width: 25%;
+  width: 20%;
   float: left;
 }
 div#cards-grid {
   width: 90%;
   float: right;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 50% 50%;
 }
 h2 strong {
   text-shadow: 2px 2px green;

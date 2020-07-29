@@ -1,5 +1,5 @@
 body {
-  background-image: url('./study-background2.jpg');
+  background-image: url('./images/backgrounds/study-background.jpg');
   height: 1300px;
   position: relative;
   padding-bottom: 400px;
@@ -19,14 +19,14 @@ body {
   margin-left: 18%;
   margin-right: 18%;
 }
-.homepage-container {
+.homepage.container {
   display: flex;
   justify-content: space-around;
   margin-top: 130px;
   /* background-color: gray; */
 }
-.carousel-container {
-  background-color: red;
+.carousel.container {
+  /* background-color: red; */
 }
 #login-form {
   /* height: 400px; */
