@@ -9,8 +9,12 @@ let currentPageDiv;
 const main = () =>
 {
   showPage("home");
+
   const loginForm = document.getElementById("login-form");
   loginForm.addEventListener('submit', e => loginHandler(e));
+
+  const loginButton = document.getElementById("login-button-nav")
+  loginButton.addEventListener("click",() => {showPage("login")}); 
 }
 // showPage(string):boolean
 //displays ONLY the divs with the <pageName> class

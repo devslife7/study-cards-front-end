@@ -1,0 +1,10 @@
+div#course-container{
+  width: 10%;
+  float: left;
+}
+div#cards-grid {
+  width: 90%;
+  float: right;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
