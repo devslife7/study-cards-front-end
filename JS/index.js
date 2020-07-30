@@ -4,12 +4,13 @@ const USER_URL = 'http://localhost:3000/users/'
 const pageDivs = document.getElementsByClassName('page')
 
 let currentUser;//User object made from User class
-let currentPageDiv
+let currentCourse;
+let currentPageDiv;
 
 //runner method for this file
 const main = () => {
   //showPage('login')  
-  renderNewCard();
+  testNewCard();
 
   const loginForm = document.getElementById('login-form')
   loginForm.addEventListener('submit', e => loginHandler(e))
@@ -18,6 +19,12 @@ const main = () => {
   loginButton.addEventListener('click', () => {
     showPage('login')
   })
+}
+
+const testNewCard = () => {
+  currentCourse = {};
+  currentCourse.id = 1;
+  renderNewCard();
 }
 // showPage(string):boolean
 //displays ONLY the divs with the <pageName> class
@@ -78,25 +85,41 @@ const renderNewCard = (course) =>
 //when 'create cards' is clicked on new card page
 const newCardHandler = (cardsDiv) =>
 {
+  let courses = [];
   const rows = cardsDiv.children;
   for(let row of rows)
   {
+    //get values from new card inputs
+    //order reversed because of the way the divs are set up
     const termCell = row.children[0];
     const answCell = row.children[1];
-    const termVal = termCell.children[1].value;
-    const answVal = answCell.children[0].value;
-    console.log(inputIsLatex(termCell));
-    console.log(inputIsLatex(answCell))
-  }  
+    let termVal = termCell.children[1].value;
+    let answVal = answCell.children[0].value;
+    
+    if(termVal && answVal)
+    {
+      course = new Card(currentCourse.id);
+      if (!isLatex(termCell))
+        termVal = `\\text{${termVal}}`;
+      if (!isLatex(answCell))
+        answVal = `\\text{${answVal}}`;
+      course.card_front = termVal;
+      course.card_back = answVal;
+
+      courses.push(course);
+    }
+  }
+  console.log(course);  
 }
 
 //takes one div (left cell or right cell), which contain radio
 //  buttons and text content
-const inputIsLatex = (cell) =>
+const isLatex = (cell) =>
 {
-  return cell.querySelector("input").checked ? true : false
+  return !cell.querySelector("input").checked
 }
 
+//append one row div on new cards form div
 const renderCardRow = (cardList,rowNum) =>
 {
   //create one row

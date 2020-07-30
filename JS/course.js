@@ -1,11 +1,12 @@
 class Course
 {
-  constructor(courseJson)
+  constructor(user_id,courseJson)
   {
+    this.user_id = user_id;
     this.id = courseJson.id;
     this.name = courseJson.name;
     this.private = courseJson.private;
-    this.cards = courseJson.cards.map(card => {return new Card(card)})
+    this.cards = courseJson.cards.map(card => {return new Card(this.id,card)})
   }
   //makes an li with this course data and put it on the ul
   renderCourse(ul)

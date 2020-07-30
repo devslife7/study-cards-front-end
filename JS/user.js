@@ -5,7 +5,7 @@ class User
     this.id = UserJson.id;
     this.username = UserJson.username;
     this.created_at = UserJson.created_at;
-    this.courses = UserJson.courses.map(course => {return new Course(course)})
+    this.courses = UserJson.courses.map(course => {return new Course(this.id,course)})
   }
 
   //render each course name in li's into the ul
