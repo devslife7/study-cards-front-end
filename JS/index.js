@@ -98,7 +98,7 @@ const newCardHandler = (cardsDiv) =>
     
     if(termVal && answVal)
     {
-      course = new Card(currentCourse.id);
+      let course = new Card(currentCourse.id);
       if (!isLatex(termCell))
         termVal = `\\text{${termVal}}`;
       if (!isLatex(answCell))
@@ -109,7 +109,7 @@ const newCardHandler = (cardsDiv) =>
       courses.push(course);
     }
   }
-  console.log(course);  
+  console.log(courses);
 }
 
 //takes one div (left cell or right cell), which contain radio
