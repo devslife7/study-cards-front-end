@@ -1,16 +1,18 @@
 body {
   background-image: url('./images/backgrounds/study-background.jpg');
-  height: 1300px;
+  height: 1200px;
   position: relative;
-  padding-bottom: 400px;
+  padding-bottom: 300px;
   min-height: 100vh;
 }
 .footer {
   width: 100%;
   position: absolute;
   bottom: 0;
+  height: 50px;
 }
 .navbar {
+  padding-top: 20px;
   margin-left: 17%;
   margin-right: 17%;
   background-color: transparent;
@@ -18,18 +20,16 @@ body {
 .container {
   margin-left: 18%;
   margin-right: 18%;
+  padding-right: 0%;
+  padding-left: 0%;
 }
 .homepage.container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-top: 130px;
   /* background-color: gray; */
 }
-.carousel.container {
-  /* background-color: red; */
-}
 #login-form {
-  /* height: 400px; */
   /* background-color: green; */
   height: 350px;
   display: flex;
@@ -76,4 +76,74 @@ a.navbar-item:hover {
   margin-bottom: 0px;
   color: black;
   text-shadow: white 0px 0px 7px;
+}
+.dashboard-container {
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-around;
+  margin-top: 60px;
+  height: 700px;
+}
+.user-courses-list {
+  /* background-color: green; */
+  margin-right: 0px;
+  max-width: 300px;
+  font-size: 17px;
+  text-align: center;
+  background-color: #c9c9c9;
+  color: black;
+  border-radius: 5px 0px 0px 5px;
+  height: fit-content;
+}
+.user-courses-cards {
+  background-color: #eaeaea;
+  flex-grow: 4;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-evenly; */
+  align-items: flex-start;
+  align-content: flex-start;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 0px 5px 5px 5px;
+}
+.grid-item {
+  margin: 10px;
+  height: 180px;
+  width: 300px;
+  background-color: #b9ff86;
+  border-radius: 8px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-courses-list h2 {
+  font-size: 22px;
+  padding-bottom: 15px;
+  margin-top: 1rem;
+}
+#course-list {
+  margin-right: 0px;
+  width: 250px;
+  padding-bottom: 1rem;
+}
+#course-list li {
+  padding-top: 17px;
+  padding-bottom: 17px;
+  padding-right: 1rem;
+  margin-left: 7px;
+  border-radius: 5px 0px 0px 5px;
+}
+#course-list li:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+.course-list-hover-color {
+  background-color: #eaeaea;
+}
+.course-card {
+  height: 150px;
+  width: 150px;
+  /* background-color: red; */
 }
