@@ -2,16 +2,17 @@ body {
   
 }
 
-.new-card.page
+
+.container.new-card.page
 {
-  
+  /*overwritten by showPage -> need to put everything in pages in divs*/
+  display: block;
   min-width: 800;
   min-width: 1200;
 }
 
 #new-card-form
-{
-  
+{  
   min-width: 700px;  
 }
 
@@ -19,12 +20,12 @@ body {
   display: flex;
   justify-content: center;
   padding-top: 20px;
-  height: 200px;
+  height: 130px;
   background-color: rgb(146, 146, 146);
 }
 .new.card.cell
 {
-  height: 150px;
+  height: 120px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -40,4 +41,9 @@ body {
   width: 400px;
   height: 100px;
   
+}
+
+.create-cards.button
+{  
+  display: block;
 }

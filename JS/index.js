@@ -55,13 +55,46 @@ const renderDashboard = () => {
 const renderNewCard = (course) =>
 {
   showPage("new-card");
+  //clear inner html of cardList
+  currentPageDiv.innerHTML = 
+  `<div id="new-card-form">      
+  </div><br>`
+  
   const cardList = currentPageDiv.querySelector("div#new-card-form");
   cardList.innerHTML = "";
-  for(let i = 1; i < 11; i++)
+  for(let i = 1; i < 7; i++)
   {
     renderCardRow(cardList,i);
   }
+  //button that will save all cards
+  const submitButton = document.createElement("button");
+  submitButton.innerText = "Create Cards"
+  submitButton.className = "create-cards button is-primary"
+  currentPageDiv.append(submitButton);
 
+  submitButton.addEventListener("click", e => newCardHandler(cardList));
+}
+
+//when 'create cards' is clicked on new card page
+const newCardHandler = (cardsDiv) =>
+{
+  const rows = cardsDiv.children;
+  for(let row of rows)
+  {
+    const termCell = row.children[0];
+    const answCell = row.children[1];
+    const termVal = termCell.children[1].value;
+    const answVal = answCell.children[0].value;
+    console.log(inputIsLatex(termCell));
+    console.log(inputIsLatex(answCell))
+  }  
+}
+
+//takes one div (left cell or right cell), which contain radio
+//  buttons and text content
+const inputIsLatex = (cell) =>
+{
+  return cell.querySelector("input").checked ? true : false
 }
 
 const renderCardRow = (cardList,rowNum) =>
@@ -99,11 +132,11 @@ const addRadioButtons = (cardCell,row,column) =>
   radioDiv.innerHTML = 
   `
     <label class="radio">
-      <input type="radio" name="latex-${row}-${column}" checked>
+      <input class="radio-latex" type="radio" name="latex-${row}${column}" checked>
       Text
     </label><br>
     <label class="radio">
-      <input type="radio" name="latex-${row}-${column}">
+      <input class="radio-latex" type="radio" name="latex-${row}${column}">
       LaTeX
     </label>
   `;
