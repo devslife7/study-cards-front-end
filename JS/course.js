@@ -48,7 +48,7 @@ class Course
     cardDiv.appendChild(cardText)
     userCoursesCards.appendChild(cardDiv)
   }
-
+  
   //make link to renderNewCard*();
   //make link to study()=>(not yet implemented)
   //no need to pass params, currentCourse already set in your li listener
