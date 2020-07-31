@@ -1,16 +1,19 @@
-
-const USER_URL = 'http://localhost:3000/users/'
+const baseURL = 'http://localhost:3000/'
+const userURL = baseURL + 'users/'
+const courseURL = baseURL + 'courses/'
 
 const pageDivs = document.getElementsByClassName('page')
 
-let currentUser;//User object made from User class
-let currentCourse;
-let currentPageDiv;
+let currentUser //User object made from User class
+let currentCourse
+let currentPageDiv
 
 // runner method for this file
 const main = () => {
   showPage('login')
   addLogInListener()
+  // addCourseButtonListeners()
+  courseListButtonsListener()
   //testNewCard();
   // addCoursesListeners()
 }
@@ -20,10 +23,85 @@ const addLogInListener = () => {
   loginForm.addEventListener('submit', e => loginHandler(e))
 }
 
+const courseListButtonsListener = () => {
+  const courseListContainer = document.querySelector('div.user-courses-list')
+
+  courseListContainer.addEventListener('click', e => {
+    // show form
+    if (e.target.matches('div.add-course')) {
+      showAddCourseForm()
+    }
+    if (e.target.matches('input.create-class-button')) {
+      createNewCourse(e)
+    }
+  })
+}
+
+const showAddCourseForm = () => {
+  // make form
+  const AddCourseForm = document.createElement('form')
+  AddCourseForm.classList += 'add-course-form'
+  // make all labels and input boxes
+  const courseNamelabel = document.createElement('label')
+  courseNamelabel.textContent = 'Add Course'
+  AddCourseForm.appendChild(courseNamelabel)
+
+  AddCourseForm.innerHTML = `
+    <input type="text" name="courseName" placeholder="Course Name" />
+    <div>
+      <input type="checkbox" name="private" />
+      <label>Private</label>
+    </div>
+    <input class="create-class-button" type="submit" value="Create New Course"/>
+  `
+
+  // append form
+  const courseListContainer = document.querySelector('div.user-courses-list')
+  courseListContainer.appendChild(AddCourseForm)
+
+  // hide the plus button
+  const addCourseButton = document.querySelector('div.add-course')
+  addCourseButton.classList.add('hidden')
+}
+
+const createNewCourse = e => {
+  e.preventDefault()
+
+  const courseName = e.target.parentElement.courseName.value
+  const coursePrivate = e.target.parentElement.private.checked
+  const courseUserID = currentUser.id
+
+  // create a new course, a fetch request
+  const postRequest = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accepts: 'application/json'
+    },
+    body: JSON.stringify({
+      name: courseName,
+      private: coursePrivate,
+      user_id: courseUserID
+    })
+  }
+
+  fetch(courseURL, postRequest)
+    .then(resp => resp.json())
+    .then(course => {
+      const newCourse = new Course(course)
+      newCourse.renderCourse()
+      console.log(course)
+    })
+
+  // append new course to the list on the fly
+  // hide form again
+  // show the plus button again and done
+}
+
 const testNewCard = () => {
-  currentCourse = {};
-  currentCourse.id = 1;
-  renderNewCard();
+  currentCourse = {}
+  currentCourse.id = 1
+  renderNewCard()
 }
 // showPage(string):boolean
 // displays ONLY the divs with the <pageName> class
@@ -32,9 +110,10 @@ const showPage = pageName => {
   for (let div of pageDivs) {
     //hide page unless class list includes <pageName>
     if (div.classList.contains(pageName)) {
-      div.style.display = 'flex'
+      // div.style.display = 'flex'
+      div.classList.remove('hidden')
       currentPageDiv = div
-    } else div.style.display = 'none'
+    } else div.classList.add('hidden')
   }
 }
 
@@ -51,108 +130,96 @@ const loginHandler = e => {
 const renderDashboard = () => {
   showPage('dashboard')
 
-  const courseList = currentPageDiv.querySelector('ul#course-list')
-  courseList.innerHTML = ''
+  // const courseList = currentPageDiv.querySelector('ul#course-list')
+  // courseList.innerHTML = ''
 
-  currentUser.renderCourses(courseList);
+  currentUser.renderAllCourses()
 }
 
 //user creates new cards for a course
-const renderNewCard = () =>
-{
-  showPage("new-card");
+const renderNewCard = () => {
+  showPage('new-card')
   //clear inner html of cardList
-  currentPageDiv.innerHTML = 
-  `<div id="new-card-form">      
+  currentPageDiv.innerHTML = `<div id="new-card-form">      
   </div><br>`
-  
-  const cardList = currentPageDiv.querySelector("div#new-card-form");
-  cardList.innerHTML = "";
-  for(let i = 1; i < 7; i++)
-  {
-    renderCardRow(cardList,i);
+
+  const cardList = currentPageDiv.querySelector('div#new-card-form')
+  cardList.innerHTML = ''
+  for (let i = 1; i < 7; i++) {
+    renderCardRow(cardList, i)
   }
   //button that will save all cards
-  const submitButton = document.createElement("button");
-  submitButton.innerText = "Create Cards"
-  submitButton.className = "create-cards button is-primary"
-  currentPageDiv.append(submitButton);
+  const submitButton = document.createElement('button')
+  submitButton.innerText = 'Create Cards'
+  submitButton.className = 'create-cards button is-primary'
+  currentPageDiv.append(submitButton)
 
-  submitButton.addEventListener("click", e => newCardHandler(cardList));
+  submitButton.addEventListener('click', e => newCardHandler(cardList))
 }
 
 //when 'create cards' is clicked on new card page
-const newCardHandler = (cardsDiv) =>
-{
-  let courses = [];
-  const rows = cardsDiv.children;
-  for(let row of rows)
-  {
+const newCardHandler = cardsDiv => {
+  let courses = []
+  const rows = cardsDiv.children
+  for (let row of rows) {
     //get values from new card inputs
     //order reversed because of the way the divs are set up
-    const termCell = row.children[0];
-    const answCell = row.children[1];
-    let termVal = termCell.children[1].value;
-    let answVal = answCell.children[0].value;
-    
-    if(termVal && answVal)
-    {
-      let course = new Card(currentCourse.id);
-      if (!isLatex(termCell))
-        termVal = `\\text{${termVal}}`;
-      if (!isLatex(answCell))
-        answVal = `\\text{${answVal}}`;
-      course.card_front = termVal;
-      course.card_back = answVal;
+    const termCell = row.children[0]
+    const answCell = row.children[1]
+    let termVal = termCell.children[1].value
+    let answVal = answCell.children[0].value
 
-      courses.push(course);
+    if (termVal && answVal) {
+      let course = new Card(currentCourse.id)
+      if (!isLatex(termCell)) termVal = `\\text{${termVal}}`
+      if (!isLatex(answCell)) answVal = `\\text{${answVal}}`
+      course.card_front = termVal
+      course.card_back = answVal
+
+      courses.push(course)
     }
   }
-  console.log(courses);
+  console.log(courses)
 }
 
 //takes one div (left cell or right cell), which contain radio
 //  buttons and text content
-const isLatex = (cell) =>
-{
-  return !cell.querySelector("input").checked
+const isLatex = cell => {
+  return !cell.querySelector('input').checked
 }
 
 //append one row div on new cards form div
-const renderCardRow = (cardList,rowNum) =>
-{
+const renderCardRow = (cardList, rowNum) => {
   //create one row
-  const cardRow = document.createElement("div");
-  cardRow.className = "card-row";
-  cardList.append(cardRow);
+  const cardRow = document.createElement('div')
+  cardRow.className = 'card-row'
+  cardList.append(cardRow)
 
   //make a left and right div to hold text and radio
-  const cardLeft = document.createElement('div');
-  const cardRight = document.createElement('div');
-  cardLeft.className = "new card left cell";
-  cardRight.className = "new card right cell"; 
-  cardRow.append(cardLeft,cardRight);
+  const cardLeft = document.createElement('div')
+  const cardRight = document.createElement('div')
+  cardLeft.className = 'new card left cell'
+  cardRight.className = 'new card right cell'
+  cardRow.append(cardLeft, cardRight)
 
   //make the text boxes
-  const term = document.createElement("textarea");
-  const answ = document.createElement("textarea");
-  term.className = "new card left input element";
-  answ.className = "new card right input element";
+  const term = document.createElement('textarea')
+  const answ = document.createElement('textarea')
+  term.className = 'new card left input element'
+  answ.className = 'new card right input element'
 
   //order for a row is radio,term-text,answer-text,radio
-  addRadioButtons(cardLeft,rowNum,1);
-  cardLeft.append(term);
+  addRadioButtons(cardLeft, rowNum, 1)
+  cardLeft.append(term)
 
-  cardRight.append(answ);
-  addRadioButtons(cardRight,rowNum,2);
+  cardRight.append(answ)
+  addRadioButtons(cardRight, rowNum, 2)
 }
 
-const addRadioButtons = (cardCell,row,column) =>
-{
-  const radioDiv = document.createElement('div');
-  radioDiv.className = "control new card element";
-  radioDiv.innerHTML = 
-  `
+const addRadioButtons = (cardCell, row, column) => {
+  const radioDiv = document.createElement('div')
+  radioDiv.className = 'control new card element'
+  radioDiv.innerHTML = `
     <label class="radio">
       <input class="radio-latex" type="radio" name="latex-${row}${column}" checked>
       Text
@@ -161,13 +228,13 @@ const addRadioButtons = (cardCell,row,column) =>
       <input class="radio-latex" type="radio" name="latex-${row}${column}">
       LaTeX
     </label>
-  `;
-  cardCell.append(radioDiv);
+  `
+  cardCell.append(radioDiv)
 }
 
 const fetchUserThenRender = inp => {
   // url to fetch by username if NaN, or search by id if number
-  const url = USER_URL + (isNaN(inp) ? `find/${inp}` : inp)
+  const url = userURL + (isNaN(inp) ? `find/${inp}` : inp)
   fetch(url)
     .then(r => r.json())
     .then(user => {

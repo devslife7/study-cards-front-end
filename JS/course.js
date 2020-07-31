@@ -1,18 +1,20 @@
-class Course
-{
-  constructor(user_id,courseJson)
-  {
-    this.user_id = user_id;
-    this.id = courseJson.id;
-    this.name = courseJson.name;
-    this.private = courseJson.private;
-    this.cards = courseJson.cards.map(card => {return new Card(this.id,card)})
+class Course {
+  constructor(courseJson) {
+    this.user_id = courseJson.user_id
+    this.id = courseJson.id
+    this.name = courseJson.name
+    this.private = courseJson.private
+    this.cards = courseJson.cards.map(card => {
+      return new Card(this.id, card)
+    })
   }
 
   //makes an li with this course data and put it on the ul
-  renderCourse(ul) {
+  renderCourse() {
+    const ul = currentPageDiv.querySelector('ul#course-list')
+    // ul.innerHTML = ''
     const li = document.createElement('li')
-    li.innerText = this.name
+    li.innerText = `${this.name} (${this.cards.length})`
     li.dataset.courseId = this.id
     ul.append(li)
 
@@ -21,7 +23,7 @@ class Course
 
   addCourseListener(li) {
     li.addEventListener('click', () => {
-      currentCourse = this;
+      currentCourse = this
       const coursesList = document.getElementById('course-list')
       // clear previously highlited course
       for (const course of coursesList.childNodes) {
@@ -52,5 +54,4 @@ class Course
   //make link to renderNewCard*();
   //make link to study()=>(not yet implemented)
   //no need to pass params, currentCourse already set in your li listener
-  
 }
