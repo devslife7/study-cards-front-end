@@ -33,7 +33,7 @@ class Course {
       const userCoursesCards = document.querySelector('div.user-courses-cards')
       userCoursesCards.innerHTML = ''
       console.log(this)
-      this.cards.forEach(card => this.renderCardAsLatex(card))//this.renderCard(card)
+      currentCourse.cards.forEach(card => this.renderCardAsLatex(card))//this.renderCard(card)
     })
   }
 

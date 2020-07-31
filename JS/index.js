@@ -212,6 +212,10 @@ const postCards = (cards) =>
   .then(r => r.json())
   .then(cardJson => {
     currentCourse.addCards(cardJson);
+    currentUser.courses = currentUser.courses.map(course => 
+      {
+        return (currentCourse.id === course.id) ? currentCourse : course
+      });
     //
     renderDashboard();
   });
