@@ -43,16 +43,17 @@ const navBarListeners = () => {
     }
     if (e.target.matches('#logout-button-nav')) {
       currentUser = undefined
-      // showPage('login')
+      document.querySelector("a#user-profile").innerText = "";
+      showPage('login')
     }
   })
 }
 
+//add cards/delete ALL cards/ study
 const addStudyCardsButtonListeners = () => {
   const buttonContainer = document.querySelector('div.user-courses-cards')
   buttonContainer.addEventListener('click', e => {
     if (e.target.matches('div.add-cards-button') || e.target.parentElement.matches('div.add-cards-button')) {
-      console.log('add button clicked')
       // render add cards page
       renderNewCard()
     }
@@ -121,6 +122,8 @@ const createNewCourse = e => {
     .then(resp => resp.json())
     .then(course => {
       const newCourse = new Course(course)
+      currentCourse = newCourse;
+      currentUser.pushCourse(currentCourse)
       // append new course to the list on the fly
       newCourse.renderCourse()
 
@@ -299,6 +302,8 @@ const fetchUserThenRender = inp => {
     .then(r => r.json())
     .then(user => {
       currentUser = new User(user)
+      const userProfile = document.querySelector("a#user-profile")
+      userProfile.innerText = `Hello, ${currentUser.username}`
       renderDashboard()
     })
 }

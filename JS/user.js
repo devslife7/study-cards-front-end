@@ -19,4 +19,9 @@ class User {
   {
     return this.courses.find(course => {return course.id === id})
   }
+  
+  pushCourse(course)
+  {
+    this.courses.push(course);
+  }
 }

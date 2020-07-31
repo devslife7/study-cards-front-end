@@ -6,9 +6,9 @@
 <!-- - Remove course feature -->
 <!-- - Can delete nested data -->
 
-- Add buttons to dashboard => link to the create card and study page
+<!-- - Add buttons to dashboard => link to the create card and study page -->
 
-- Fix Nav links
+<!-- - Fix Nav links -->
 
 - show card as image/study
 <!-- stretch 7. Create user profile, link to it in nav -->
