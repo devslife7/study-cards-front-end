@@ -1,6 +1,7 @@
 const BASE_URL = 'http://localhost:3000/'
 const USER_URL = BASE_URL + 'users/'
 const CARD_URL = BASE_URL + 'cards/'
+const COURSE_CARDS_URL = BASE_URL + '/course_cards/'
 
 const pageDivs = document.getElementsByClassName('page')
 
@@ -98,7 +99,7 @@ const newCardHandler = (cardsDiv) =>
     
     if(termVal && answVal)
     {
-      let card = new Card(currentCourse.id);
+      let card = new Card();
       if (!isLatex(termCell))
         termVal = `\\text{${termVal}}`;
       if (!isLatex(answCell))
@@ -106,36 +107,36 @@ const newCardHandler = (cardsDiv) =>
       card.card_front = termVal;
       card.card_back = answVal;
 
+      //add cards to array sent to fetch
       cards.push(card);
     }
-  }  
+  }   
   postCards(cards);
 }
 
-const configObj = (card) =>
+const configObj = (data,method) =>
 {
   return {
-    method: "POST",
+    method: method,
     headers:
     {
       "Content-Type": "application/json",
       "Accept": "application/json"
     },
-    body: JSON.stringify(card)
+    body: JSON.stringify(data)
   };
 }
 
-const postCard = (card) =>
-{
-  fetch(CARD_URL,configObj(card))
-  .then(r => r.json())
-  .then(json => console.log("json:",json));
-}
-
+//post all cards
 const postCards = (cards) =>
 {
-  
-  cards.forEach(card => postCard(card))
+  const data = {data: {cards: cards, course_id: currentCourse.id}};
+  fetch(CARD_URL,configObj(data,"POST"))
+  .then(r => r.json())
+  .then(cardJson => {
+    currentCourse.addCards(cardJson);
+    renderDashboard();
+  });
 }
 //takes one div (left cell or right cell), which contain radio
 //  buttons and text content
