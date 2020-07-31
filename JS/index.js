@@ -20,9 +20,50 @@ const main = () => {
   // addCourseButtonListeners()
   courseListButtonsListener()
   addStudyCardsButtonListeners()
+  deleteCardsListener()
   navBarListeners()
   // testNewCard();
   // addCoursesListeners()
+}
+
+const deleteCardsListener = () => {
+  const cardsContainer = document.getElementById('cards-grid')
+  cardsContainer.addEventListener('click', e => {
+    if (e.target.matches('p.delete-card-button')) {
+      // console.log(e.target.dataset.cardId)
+      deleteCard(e.target.dataset.cardId)
+    }
+  })
+}
+
+const deleteCard = cardId => {
+  console.log(cardId)
+
+  // make fetch request to delete card
+
+  fetch(CARD_URL + cardId, { method: 'DELETE' })
+    .then(resp => resp.json())
+    .then(resp => {
+      console.log('return of delete fetch', resp)
+
+      // delete card from the DOM on fetch response
+      // grab the p with id and delete its parent
+      document.querySelector(`p[data-card-id="${resp.id}"`).parentElement.remove()
+
+      // make it persist if you come back to the course
+      // update currentCourse
+      currentCourse.cards = currentCourse.cards.filter(card => card.id != resp.id)
+      // currentCourse.renderCourse()
+      // console.log('currentCourse.cards', currentCourse.cards)
+      // console.log('resp.id', resp.id)
+
+      // update card list on courses ul list
+      // select corresponting li and reduce the span
+      const coursesUl = document.getElementById('course-list')
+      const courseLi = document.querySelector(`li[data-course-id="${currentCourse.id}"]`)
+      const cardsCountSpan = courseLi.querySelector('span')
+      cardsCountSpan.innerText = cardsCountSpan.innerText - 1
+    })
 }
 
 const navBarListeners = () => {
@@ -43,7 +84,7 @@ const navBarListeners = () => {
     }
     if (e.target.matches('#logout-button-nav')) {
       currentUser = undefined
-      document.querySelector("a#user-profile").innerText = "";
+      document.querySelector('a#user-profile').innerText = ''
       showPage('login')
     }
   })
@@ -122,7 +163,7 @@ const createNewCourse = e => {
     .then(resp => resp.json())
     .then(course => {
       const newCourse = new Course(course)
-      currentCourse = newCourse;
+      currentCourse = newCourse
       currentUser.pushCourse(currentCourse)
       // append new course to the list on the fly
       newCourse.renderCourse()
@@ -302,7 +343,7 @@ const fetchUserThenRender = inp => {
     .then(r => r.json())
     .then(user => {
       currentUser = new User(user)
-      const userProfile = document.querySelector("a#user-profile")
+      const userProfile = document.querySelector('a#user-profile')
       userProfile.innerText = `Hello, ${currentUser.username}`
       renderDashboard()
     })

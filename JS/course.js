@@ -12,18 +12,20 @@ class Course {
   //makes an li with this course data and put it on the ul
   renderCourse() {
     const ul = currentPageDiv.querySelector('ul#course-list')
+
     const li = document.createElement('li')
-    li.textContent = `${this.name} (${this.cards.length})`
+    li.innerHTML = `${this.name} (<span>${this.cards.length}</span>)`
     li.dataset.courseId = this.id
     ul.append(li)
+
     if (currentCourse && currentUser.findCourse(currentCourse.id)) courseLiHandler(this, li)
     else courseLiHandler(currentUser.courses[0], li)
+
     li.addEventListener('click', () => courseLiHandler(this, li))
   }
 
   // renderCardAsLatex(card)
 
-  // {
   addCourseListener(li) {
     li.addEventListener('click', () => {
       currentCourse = this
@@ -58,11 +60,16 @@ class Course {
 
     const cardDiv = document.createElement('div')
     const cardLaTeX = document.createElement('img')
+    const deleteCard = document.createElement('p')
+    deleteCard.classList += 'delete-card-button'
+    deleteCard.textContent = 'X'
+    deleteCard.dataset.cardId = card.id
 
     cardDiv.classList += 'grid-item'
     cardLaTeX.src = `https://latex.codecogs.com/gif.latex?\\huge&space;\\\\${card.card_front}`
     // render the cards to container
     cardDiv.appendChild(cardLaTeX)
+    cardDiv.appendChild(deleteCard)
     userCoursesCards.appendChild(cardDiv)
   }
 
@@ -106,8 +113,6 @@ const courseLiHandler = (course, li) => {
   const userCoursesCards = document.querySelector('div.user-courses-cards')
   userCoursesCards.innerHTML = ''
 
-  console.log(userCoursesCards)
-
   const buttonsContainer = document.createElement('div')
   buttonsContainer.classList.add('cards-buttons-container')
   buttonsContainer.innerHTML = `
@@ -119,5 +124,6 @@ const courseLiHandler = (course, li) => {
 
   // const userCoursesCards = document.querySelector('div.user-courses-cards')
   // userCoursesCards.innerHTML = ''
+
   currentCourse.cards.forEach(card => currentCourse.renderCardAsLatex(card)) //this.renderCard(card)
 }
