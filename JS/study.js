@@ -1,42 +1,48 @@
 const studyFront = document.querySelector("#card-side-front");
 const studyBack = document.querySelector("#card-side-back");
+let currentCards = [];
 
 const renderStudyCardsPage = () =>
 {
+  currentCards = currentCourse.cards.slice();
   currentPageDiv = document.querySelector(".study.page");
   showPage("study");
   currentPageDiv.addEventListener("click",e => handleStudyClick(e));
-  if(currentCourse.cards)
+  if(currentCards)
   {
-    showFirstCard(currentCourse.cards);
+    showCard(currentCards.shift());
   }
 
 }
 
 const handleStudyClick = (e) => 
 {
-  console.log(e.target)
-  if (e.target.className === "front-image")
+  const tgt = e.target;
+  if (tgt.className === "front-image" ||tgt.id === "card-side-front")
   {
     studyFront.className = "hidden";
     studyBack.className = ""
   }
-  if (e.target.className === "back-image")
+  if (tgt.className === "back-image"||tgt.id === "card-side-back")
   {
     studyBack.className = "hidden"
     studyFront.className = "";
   }
-  if (e.target.id === "next")
+  if (tgt.id === "next" && currentCards[0])
   {
-    //
+    showCard(currentCards.shift());
+  }
+  if (tgt.id === 'restart')
+  {
+    currentCards =  currentCourse.cards.slice();
+    showCard(currentCards.shift());
   }
 }
 
-const showFirstCard = (cards) =>
+const showCard = (card) =>
 {
-  console.log(cards)
-  const cardFront = cards[0].toLatexImg("front");
-  const cardBack = cards[0].toLatexImg("back");
+  const cardFront = card.toLatexImg("front");
+  const cardBack = card.toLatexImg("back");
   
   studyFront.innerHTML = "";
   studyBack.innerHTML = "";
