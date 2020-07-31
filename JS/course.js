@@ -4,7 +4,7 @@ class Course {
     this.id = courseJson.id
     this.name = courseJson.name
     this.private = courseJson.private
-    this.cards = courseJson.cards.map(card => {      
+    this.cards = courseJson.cards.map(card => {
       return new Card(card)
     })
   }
@@ -13,7 +13,7 @@ class Course {
   renderCourse() {
     const ul = currentPageDiv.querySelector('ul#course-list')
     const li = document.createElement('li')
-    li.innerText = `${this.name} (${this.cards.length})`
+    li.textContent = `${this.name} (${this.cards.length})`
     li.dataset.courseId = this.id
     ul.append(li)
 
@@ -22,7 +22,7 @@ class Course {
 
   addCourseListener(li) {
     li.addEventListener('click', () => {
-      currentCourse = this      
+      currentCourse = this
       const coursesList = document.getElementById('course-list')
       // clear previously highlited course
       for (const course of coursesList.childNodes) {
@@ -32,26 +32,24 @@ class Course {
 
       const userCoursesCards = document.querySelector('div.user-courses-cards')
       userCoursesCards.innerHTML = ''
-      console.log(this)
-      this.cards.forEach(card => this.renderCardAsLatex(card))//this.renderCard(card)
+
+      // add delete and new card buttons
+      const buttonsContainer = document.createElement('div')
+      buttonsContainer.classList.add('cards-buttons-container')
+      buttonsContainer.innerHTML = `
+        <div class="add-cards-button"><p>Add Cards</p></div>
+        <div class="study-cards-button"><p>Study Current Cards</p></div>
+        <div class="delete-course-button"><p>Delete Current Course</p></div>
+      `
+
+      userCoursesCards.appendChild(buttonsContainer)
+
+      // render each card to the card container
+      this.cards.forEach(card => this.renderCardAsLatex(card)) //this.renderCard(card)
     })
   }
 
-  // renderCard(card) {
-  //   const userCoursesCards = document.querySelector('div.user-courses-cards')
-
-  //   const cardDiv = document.createElement('div')
-  //   const cardText = document.createElement('p')
-
-  //   cardDiv.classList += 'grid-item'
-  //   cardText.textContent = `${card.card_front}`
-  //   // render the cards to container
-  //   cardDiv.appendChild(cardText)
-  //   userCoursesCards.appendChild(cardDiv)
-  // }
-
-  renderCardAsLatex(card)
-  {
+  renderCardAsLatex(card) {
     const userCoursesCards = document.querySelector('div.user-courses-cards')
 
     const cardDiv = document.createElement('div')
@@ -65,12 +63,24 @@ class Course {
   }
 
   //takes json and adds all given cards into this course
-  addCards(json)
-  {
+  addCards(json) {
     json.forEach(card_data => this.cards.push(new Card(card_data)))
   }
-  
-  //make link to renderNewCard*();
-  //make link to study()=>(not yet implemented)
-  //no need to pass params, currentCourse already set in your li listener
+
+  deleteCourse() {
+    const confirmation = confirm('You are about to delete this course and its containing cards, are you sure?')
+
+    if (confirmation) {
+      // make delete request
+      fetch(courseURL + currentCourse.id, { method: 'DELETE' })
+        .then(resp => resp.json())
+        .then(deletedCourse => {
+          console.log('deletedCourse', deletedCourse)
+          const courseLi = document.querySelector(`#course-list li[data-course-id="${deletedCourse.id}"`)
+          console.log('courseLi', courseLi)
+          // remove from list on dom
+          courseLi.remove()
+        })
+    }
+  }
 }

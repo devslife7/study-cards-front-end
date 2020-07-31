@@ -2,6 +2,7 @@ const BASE_URL = 'http://localhost:3000/'
 const USER_URL = BASE_URL + 'users/'
 const CARD_URL = BASE_URL + 'cards/'
 const COURSE_CARDS_URL = BASE_URL + '/course_cards/'
+
 const baseURL = 'http://localhost:3000/'
 const userURL = baseURL + 'users/'
 const courseURL = baseURL + 'courses/'
@@ -18,8 +19,28 @@ const main = () => {
   addLogInListener()
   // addCourseButtonListeners()
   courseListButtonsListener()
-  //testNewCard();
+  addStudyCardsButtonListeners()
+  // testNewCard();
   // addCoursesListeners()
+}
+
+const addStudyCardsButtonListeners = () => {
+  const buttonContainer = document.querySelector('div.user-courses-cards')
+  buttonContainer.addEventListener('click', e => {
+    if (e.target.matches('div.add-cards-button') || e.target.parentElement.matches('div.add-cards-button')) {
+      console.log('add button clicked')
+      // render add cards page
+      renderNewCard()
+    }
+    if (e.target.matches('div.study-cards-button') || e.target.parentElement.matches('div.study-cards-button')) {
+      console.log('study button clicked')
+      // add the feature for study cards here
+    }
+    if (e.target.matches('div.delete-course-button') || e.target.parentElement.matches('div.delete-course-button')) {
+      console.log('delete button clicked')
+      currentCourse.deleteCourse()
+    }
+  })
 }
 
 const addLogInListener = () => {
@@ -35,6 +56,7 @@ const courseListButtonsListener = () => {
     if (e.target.matches('div.add-course')) {
       showAddCourseForm()
     }
+    // post request to backend
     if (e.target.matches('input.create-class-button')) {
       createNewCourse(e)
     }
@@ -42,30 +64,13 @@ const courseListButtonsListener = () => {
 }
 
 const showAddCourseForm = () => {
-  // make form
-  const AddCourseForm = document.createElement('form')
-  AddCourseForm.classList += 'add-course-form'
-  // make all labels and input boxes
-  const courseNamelabel = document.createElement('label')
-  courseNamelabel.textContent = 'Add Course'
-  AddCourseForm.appendChild(courseNamelabel)
-
-  AddCourseForm.innerHTML = `
-    <input type="text" name="courseName" placeholder="Course Name" />
-    <div>
-      <input type="checkbox" name="private" />
-      <label>Private</label>
-    </div>
-    <input class="create-class-button" type="submit" value="Create New Course"/>
-  `
-
-  // append form
-  const courseListContainer = document.querySelector('div.user-courses-list')
-  courseListContainer.appendChild(AddCourseForm)
-
   // hide the plus button
   const addCourseButton = document.querySelector('div.add-course')
   addCourseButton.classList.add('hidden')
+
+  // show the form
+  const addCourseForm = document.querySelector('form.add-course-form')
+  addCourseForm.classList.remove('hidden')
 }
 
 const createNewCourse = e => {
@@ -93,12 +98,21 @@ const createNewCourse = e => {
     .then(resp => resp.json())
     .then(course => {
       const newCourse = new Course(course)
+      // append new course to the list on the fly
       newCourse.renderCourse()
+
+      // click on new course li
+      const newCourseLi = document.querySelector(`ul#course-list li[data-course-id="${course.id}"`)
+      newCourseLi.click()
     })
 
-  // append new course to the list on the fly
-  // hide form again
+  // reset form and hide form again
+  const addCourseForm = document.querySelector('form.add-course-form')
+  addCourseForm.classList.add('hidden')
+  addCourseForm.reset()
   // show the plus button again and done
+  const addCourseButton = document.querySelector('div.add-course')
+  addCourseButton.classList.remove('hidden')
 }
 
 const testNewCard = () => {
@@ -161,60 +175,52 @@ const renderNewCard = () => {
 }
 
 //when 'create cards' is clicked on new card page
-const newCardHandler = (cardsDiv) =>
-{
-  let cards = [];
-  const rows = cardsDiv.children;
-  for(let row of rows)
-  {
+const newCardHandler = cardsDiv => {
+  let cards = []
+  const rows = cardsDiv.children
+  for (let row of rows) {
     //get values from new card inputs
     //order reversed because of the way the divs are set up
-    const termCell = row.children[0];
-    const answCell = row.children[1];
-    let termVal = termCell.children[1].value;
-    let answVal = answCell.children[0].value;
-    
-    if(termVal && answVal)
-    {
-      let card = new Card();
-      if (!isLatex(termCell))
-        termVal = `\\text{${termVal}}`;
-      if (!isLatex(answCell))
-        answVal = `\\text{${answVal}}`;
-      card.card_front = termVal;
-      card.card_back = answVal;
+    const termCell = row.children[0]
+    const answCell = row.children[1]
+    let termVal = termCell.children[1].value
+    let answVal = answCell.children[0].value
+
+    if (termVal && answVal) {
+      let card = new Card()
+      if (!isLatex(termCell)) termVal = `\\text{${termVal}}`
+      if (!isLatex(answCell)) answVal = `\\text{${answVal}}`
+      card.card_front = termVal
+      card.card_back = answVal
 
       //add cards to array sent to fetch
-      cards.push(card);
+      cards.push(card)
     }
-  }   
-  postCards(cards);
+  }
+  postCards(cards)
 }
 
-const configObj = (data,method) =>
-{
+const configObj = (data, method) => {
   return {
     method: method,
-    headers:
-    {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json'
     },
     body: JSON.stringify(data)
-  };
+  }
 }
 
 //post all cards
-const postCards = (cards) =>
-{
-  const data = {data: {cards: cards, course_id: currentCourse.id}};
-  fetch(CARD_URL,configObj(data,"POST"))
-  .then(r => r.json())
-  .then(cardJson => {
-    currentCourse.addCards(cardJson);
-    //
-    renderDashboard();
-  });
+const postCards = cards => {
+  const data = { data: { cards: cards, course_id: currentCourse.id } }
+  fetch(CARD_URL, configObj(data, 'POST'))
+    .then(r => r.json())
+    .then(cardJson => {
+      currentCourse.addCards(cardJson)
+      //
+      renderDashboard()
+    })
 }
 //takes one div (left cell or right cell), which contain radio
 //  buttons and text content

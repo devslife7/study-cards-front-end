@@ -3,8 +3,11 @@
 <!-- - Show number of cards in course ie Nursing 196(10 cards) -->
 
 <!-- - Add form element bottom of course list to add course -->
+<!-- - Remove course feature -->
+<!-- - Can delete nested data -->
+
 - Add buttons to dashboard => link to the create card and study page
- 
+
 - Fix Nav links
 
 - show card as image/study

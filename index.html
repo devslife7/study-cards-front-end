@@ -135,15 +135,20 @@
         <!-- list of all the courses for a given user -->
         <ul id="course-list">
         </ul>
+        <form class="add-course-form hidden">
+          <input class="input"type="text" name="courseName" placeholder="Course Name" />
+            <div>
+              <input type="checkbox" name="private" />
+              <label>Private</label>
+            </div>
+          <input class="create-class-button button" type="submit" value="Create New Course"/>
+        </form>
         <div class="add-course"> + </div>
       </div>
       <div id="cards-grid" class="user-courses-cards">
         <!-- this is all dummy data -->
         <div class="grid-item">
-          <img src="./images/cardTemplate/question.png" alt="test question">
-        </div>
-        <div class="grid-item">
-          <img src="./images/cardTemplate/question.png" alt="test question">
+          <p>No course selected.</p>
         </div>
       </div>
     </div>
