@@ -30,7 +30,8 @@ const navBarListeners = () => {
   navBar.addEventListener('click', e => {
     if (e.target.matches('#dashboard')) {
       console.log('dashboard was clicked')
-      showPage('dashboard')
+      // showPage('dashboard')
+      renderDashboard()
     }
     if (e.target.matches('#user-profile')) {
       console.log('user-profile was clicked')
@@ -39,6 +40,10 @@ const navBarListeners = () => {
     if (e.target.matches('#user-login')) {
       console.log('user-login was clicked')
       showPage('login')
+    }
+    if (e.target.matches('#logout-button-nav')) {
+      currentUser = undefined
+      // showPage('login')
     }
   })
 }
@@ -145,7 +150,6 @@ const showPage = pageName => {
   for (let div of pageDivs) {
     //hide page unless class list includes <pageName>
     if (div.classList.contains(pageName)) {
-      // div.style.display = 'flex'
       div.classList.remove('hidden')
       currentPageDiv = div
     } else div.classList.add('hidden')
