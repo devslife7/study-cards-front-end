@@ -11,6 +11,9 @@ body {
   bottom: 0;
   height: 50px;
 }
+.hidden {
+  display: none;
+}
 .navbar {
   padding-top: 20px;
   margin-left: 17%;
@@ -87,12 +90,13 @@ a.navbar-item:hover {
 .user-courses-list {
   /* background-color: green; */
   margin-right: 0px;
-  max-width: 300px;
-  font-size: 17px;
+  /* max-width: 400px; */
+  width: 300px;
+  font-size: 16px;
   text-align: center;
   background-color: #c9c9c9;
   color: black;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0px 5px 5px;
   height: fit-content;
 }
 .user-courses-cards {
@@ -109,10 +113,11 @@ a.navbar-item:hover {
 }
 .grid-item {
   margin: 10px;
-  height: 180px;
-  width: 300px;
+  /* height: 180px; */
+  height: 140px;
+  width: 250px;
   background-color: #b9ff86;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 20px;
   display: flex;
   justify-content: center;
@@ -125,7 +130,7 @@ a.navbar-item:hover {
 }
 #course-list {
   margin-right: 0px;
-  width: 250px;
+  width: 300px;
   /* padding-bottom: 1rem; */
 }
 #course-list li {
@@ -161,10 +166,51 @@ a.navbar-item:hover {
 }
 .add-course-form {
   /* background-color: red; */
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: center;
 }
-.hidden {
-  display: none;
+.delete-course-button,
+.study-cards-button,
+.add-cards-button {
+  background-color: #c9c9c9;
+  text-align: center;
+  padding: 5px;
+  font-size: 17px;
+  margin: 10px;
+  height: 50px;
+  width: 250px;
+  border-radius: 5px;
+  align-self: flex-end;
+  /* flex: none; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.study-cards-button:hover,
+.add-cards-button:hover {
+  background-color: #a8d6f2;
+  cursor: pointer;
+}
+.delete-course-button:hover {
+  background-color: #ff563f;
+  cursor: pointer;
+}
+#course-list li span {
+  background-color: #f29185;
+  border-radius: 20px;
+  width: 100px;
+  margin-right: 10px;
+  padding: 2px 8px 4px 7px;
+}
+#course-list li span:hover {
+  background-color: #ec4731;
+  padding: 4px 10px 6px 9px;
+  font-size: 16px;
+}
+.cards-buttons-container {
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-evenly;
+  width: 950px;
 }

@@ -10,9 +10,8 @@ class User {
 
   //render each course name in li's into the ul
   renderAllCourses() {
-    
-    const ul = currentPageDiv.querySelector("ul#course-list")
-    ul.innerHTML = "";
+    const ul = currentPageDiv.querySelector('ul#course-list')
+    ul.innerHTML = ''
     this.courses.forEach(course => course.renderCourse())
   }
 
