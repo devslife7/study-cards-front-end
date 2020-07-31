@@ -126,7 +126,7 @@ a.navbar-item:hover {
 #course-list {
   margin-right: 0px;
   width: 250px;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
 }
 #course-list li {
   padding-top: 17px;
@@ -147,4 +147,24 @@ a.navbar-item:hover {
   height: 150px;
   width: 150px;
   /* background-color: red; */
+}
+.add-course {
+  background-color: #929292;
+  font-size: 33px;
+  margin: 10px 10px 10px 10px;
+  border-radius: 5px;
+}
+.add-course:hover {
+  /* background-color: #eaeaea; */
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+.add-course-form {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hidden {
+  display: none;
 }

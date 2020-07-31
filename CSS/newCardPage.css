@@ -4,9 +4,7 @@ body {
 
 
 .container.new-card.page
-{
-  /*overwritten by showPage -> need to put everything in pages in divs*/
-  display: block;
+{  
   min-width: 800;
   min-width: 1200;
 }
