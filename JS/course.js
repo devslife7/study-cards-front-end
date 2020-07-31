@@ -80,6 +80,10 @@ class Course {
           console.log('courseLi', courseLi)
           // remove from list on dom
           courseLi.remove()
+
+          // click on last li from courses list
+          const courseList = document.getElementById('course-list')
+          courseList.lastElementChild.click()
         })
     }
   }

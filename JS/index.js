@@ -20,8 +20,27 @@ const main = () => {
   // addCourseButtonListeners()
   courseListButtonsListener()
   addStudyCardsButtonListeners()
+  navBarListeners()
   // testNewCard();
   // addCoursesListeners()
+}
+
+const navBarListeners = () => {
+  const navBar = document.querySelector('nav.navbar')
+  navBar.addEventListener('click', e => {
+    if (e.target.matches('#dashboard')) {
+      console.log('dashboard was clicked')
+      showPage('dashboard')
+    }
+    if (e.target.matches('#user-profile')) {
+      console.log('user-profile was clicked')
+      // showPage('login')
+    }
+    if (e.target.matches('#user-login')) {
+      console.log('user-login was clicked')
+      showPage('login')
+    }
+  })
 }
 
 const addStudyCardsButtonListeners = () => {
@@ -37,7 +56,6 @@ const addStudyCardsButtonListeners = () => {
       // add the feature for study cards here
     }
     if (e.target.matches('div.delete-course-button') || e.target.parentElement.matches('div.delete-course-button')) {
-      console.log('delete button clicked')
       currentCourse.deleteCourse()
     }
   })

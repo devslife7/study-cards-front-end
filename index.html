@@ -1,192 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Cards</title>
+    <!-- CSS Links -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <link rel="stylesheet" href="./CSS/newCardPage.css" />
+    <!-- <link rel="stylesheet" href="./CSS/stylesheet.css"> -->
+    <script src="https://kit.fontawesome.com/66ad2550a3.js" crossorigin="anonymous"></script>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study Cards</title>
-  <!-- CSS Links -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
-  <link rel="stylesheet" href="./CSS/style.css" />
-  <link rel="stylesheet" href="./CSS/newCardPage.css" />
-  <!-- <link rel="stylesheet" href="./CSS/stylesheet.css"> -->
-  <script src="https://kit.fontawesome.com/66ad2550a3.js" crossorigin="anonymous"></script>
+    <!-- Javascript Tags -->
+    <script defer src="./JS/index.js"></script>
+    <script defer src="./JS/card.js"></script>
+    <script defer src="./JS/course.js"></script>
+    <script defer src="./JS/user.js"></script>
+    <script defer src="./JS/linkedList.js"></script>
+    <script defer src="./JS/study.js"></script>
+    <!-- <script src="./JS/liveJS.js#CSS"></script> -->
+  </head>
 
-  <!-- Javascript Tags -->
-  <script defer src="./JS/index.js"></script>
-  <script defer src="./JS/card.js"></script>
-  <script defer src="./JS/course.js"></script>
-  <script defer src="./JS/user.js"></script>
-  <script defer src="./JS/linkedList.js"></script>
-  <script defer src="./JS/study.js"></script>
-  <!-- <script src="./JS/liveJS.js#CSS"></script> -->
-</head>
-
-<body>
-  <!-- Navigation Bar Starts -->
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="">
-        <img src="https://cdn4.iconfinder.com/data/icons/VISTA/accounting/png/400/credit_cards.png" width="40"
-          height="60" />
-      </a>
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-        data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item">Dashboard</a>
-        <a class="navbar-item">User Profile</a>
+  <body>
+    <!-- Navigation Bar Starts -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="">
+          <img
+            src="https://cdn4.iconfinder.com/data/icons/VISTA/accounting/png/400/credit_cards.png"
+            width="40"
+            height="60"
+          />
+        </a>
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
 
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            </a>
-            <!-- <a id="login-button-nav" class="button is-light">
-              Log in
-            </a> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <!-- Navigation Bar Ends -->
-
-  <!-- Home Page Starts -->
-  <div class="login page">
-    <!-- used for css - so flex display does not mess with hiding page -->
-    <div class="homepage container">
-      <!-- Login Page Starts -->
-      <form id="login-form">
-        <h2 class="title is-4 login-title">Login</h2>
-
-        <div class="control has-icons-left has-icons-right">
-          <!-- input value set to Nick for testing purposes -->
-          <input id="login-inp" class="input" type="text" placeholder="Username" value="Nick"/>
-          <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-          </span>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a id="dashboard" class="navbar-item">Dashboard</a>
+          <a id="user-profile" class="navbar-item">User Profile</a>
+          <a id="user-login" class="navbar-item">Log in</a>
         </div>
 
-        <div class="control has-icons-left has-icons-right">
-          <input class="input" type="password" placeholder="Password" />
-          <span class="icon is-small is-left has-icons-right">
-            <i class="fas fa-lock"></i>
-          </span>
-        </div>
-
-        <div class="field is-grouped">
-          <button id="submit-login" class="button is-light" type="submit">Log In</button>
-          <button id="submit-signup" class="button is-success">Sign Up</button>
-        </div>
-      </form>
-      <!-- Login Page Ends -->
-
-      <!-- Divider Starts/Ends -->
-      <div class="divider"></div>
-
-      <!-- Carousel Starts -->
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://c1.wallpaperflare.com/preview/297/171/764/chart-trading-courses-analysis.jpg"
-              class="d-block w-100" alt="..." />
-            <div class="carousel-caption d-none d-md-block">
-              <p>First slide label</p>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://www.newsaperp.com/images/large/sap/it-courses-online-for-beginners/it-courses-online-for-beginners3.jpg"
-              class="d-block w-100" alt="..." />
-            <div class="carousel-caption d-none d-md-block">
-              <p>Second slide label</p>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="https://p0.pikrepo.com/preview/896/934/golf-course.jpg" class="d-block w-100" alt="..." />
-            <div class="carousel-caption d-none d-md-block">
-              <p>Third slide label</p>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a id="hello-button-nav" class="button is-light hidden">
+                Hello User
+              </a>
+              <a id="login-button-nav" class="button is-light">
+                Log Out
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <!-- Carousel Ends -->
-    </div>
-  </div>
-  <!-- Home Page Ends -->
+    </nav>
+    <!-- Navigation Bar Ends -->
 
-  <!-- Dashboard Starts -->
-  <div class="dashboard page">
-    <div class="dashboard-container container">
-      <div id="course-container" class="user-courses-list">
-        <h2><strong>My Courses</strong></h2>
-        <!-- list of all the courses for a given user -->
-        <ul id="course-list">
-        </ul>
-        <form class="add-course-form hidden">
-          <input class="input"type="text" name="courseName" placeholder="Course Name" />
+    <!-- Home Page Starts -->
+    <div class="login page">
+      <!-- used for css - so flex display does not mess with hiding page -->
+      <div class="homepage container">
+        <!-- Login Page Starts -->
+        <form id="login-form">
+          <h2 class="title is-4 login-title">Login</h2>
+
+          <div class="control has-icons-left has-icons-right">
+            <!-- input value set to Nick for testing purposes -->
+            <input id="login-inp" class="input" type="text" placeholder="Username" value="Nick" />
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" type="password" placeholder="Password" />
+            <span class="icon is-small is-left has-icons-right">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+
+          <div class="field is-grouped">
+            <button id="submit-login" class="button is-light" type="submit">Log In</button>
+            <button id="submit-signup" class="button is-success">Sign Up</button>
+          </div>
+        </form>
+        <!-- Login Page Ends -->
+
+        <!-- Divider Starts/Ends -->
+        <div class="divider"></div>
+
+        <!-- Carousel Starts -->
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="https://c1.wallpaperflare.com/preview/297/171/764/chart-trading-courses-analysis.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <p>First slide label</p>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://www.newsaperp.com/images/large/sap/it-courses-online-for-beginners/it-courses-online-for-beginners3.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <p>Second slide label</p>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://p0.pikrepo.com/preview/896/934/golf-course.jpg" class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <p>Third slide label</p>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Carousel Ends -->
+      </div>
+    </div>
+    <!-- Home Page Ends -->
+
+    <!-- Dashboard Starts -->
+    <div class="dashboard page">
+      <div class="dashboard-container container">
+        <div id="course-container" class="user-courses-list">
+          <h2><strong>My Courses</strong></h2>
+          <!-- list of all the courses for a given user -->
+          <ul id="course-list"></ul>
+          <form class="add-course-form hidden">
+            <input class="input" type="text" name="courseName" placeholder="Course Name" />
             <div>
               <input type="checkbox" name="private" />
               <label>Private</label>
             </div>
-          <input class="create-class-button button" type="submit" value="Create New Course"/>
-        </form>
-        <div class="add-course"> + </div>
-      </div>
-      <div id="cards-grid" class="user-courses-cards">
-        <!-- this is all dummy data -->
-        <div class="grid-item">
-          <p>No course selected.</p>
+            <input class="create-class-button button" type="submit" value="Create New Course" />
+          </form>
+          <div class="add-course">+</div>
+        </div>
+        <div id="cards-grid" class="user-courses-cards">
+          <!-- this is all dummy data -->
+          <div class="grid-item">
+            <p>No course selected.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Dashboard Ends -->
+    <!-- Dashboard Ends -->
 
-  <!-- New Card Page Starts  -->
-  <div class="new-card page container">    
-  </div>
-  <!-- New Card Page Ends -->
+    <!-- New Card Page Starts  -->
+    <div class="new-card page container"></div>
+    <!-- New Card Page Ends -->
 
-  <!-- Study Page Starts -->
-  <div class="study page container">
+    <!-- Study Page Starts -->
+    <div class="study page container"></div>
+    <!-- Study Page Ends -->
 
-  </div>
-  <!-- Study Page Ends -->
+    <!-- Footer Starts -->
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Study Cards</strong> by <a href="https://twitter.com">Marcos</a> &
+          <a href="https://twitter.com">Steve</a>. The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is approved by
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Study Cards</a>.
+        </p>
+      </div>
+    </footer>
+    <!--Footer Ends -->
 
-  <!-- Footer Starts -->
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-        <strong>Study Cards</strong> by <a href="https://twitter.com">Marcos</a> &
-        <a href="https://twitter.com">Steve</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is approved by
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Study Cards</a>.
-      </p>
-    </div>
-  </footer>
-  <!--Footer Ends -->
-
-  <!-- JavaScript and dependencies for Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-    crossorigin="anonymous"></script>
-</body>
-
-
+    <!-- JavaScript and dependencies for Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
