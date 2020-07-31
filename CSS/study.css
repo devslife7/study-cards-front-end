@@ -4,24 +4,29 @@
   justify-content: center; */
 }
 #study-container {
-  padding-left: 100px;
+  /* padding-left: 100px; */
   display: flex;
-  background-color: turquoise;
+  /* background-color: turquoise; */
   align-items: center;
-  height: 500px;
-  width: 650px;
-  display: flex;
+  /* height: 500px; */
+  /* width: 650px; */
+  /* display: flex; */
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 #study-box {
-  height: 400px;
+  height: 500px;
   width: 600px;
+  margin-top: 50px;
   background-color: #eaeaea;
-  flex-grow: 4;
+  /* flex-grow: 4; */
   display: flex;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-radius: 0px 5px 5px 5px;
+  /* padding-left: 5px; */
+  /* padding-right: 5px; */
+  border-radius: 10px 10px 10px 10px;
+  justify-content: center;
+  align-items: center;
 }
 #study-box > div {
   align-items: center;
@@ -31,8 +36,9 @@
 #card-side-back {
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
-  height: 60%;
+  width: 500px;
+  height: 300px;
+  border-radius: 10px;
   /* padding-top: 100px;
   padding-left: 30px;
   text-align: center;
@@ -46,4 +52,18 @@
   margin-left: auto;
   margin-right: auto;
   width: 40%;
+}
+.study-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+}
+.study-buttons a {
+  margin: 20px;
+}
+#card-side-front img,
+#card-side-back img {
+  min-width: 400px;
+  /* height: 100px; */
+  /* margin: 0px 10px; */
 }
