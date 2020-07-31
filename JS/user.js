@@ -15,4 +15,9 @@ class User {
     ul.innerHTML = "";
     this.courses.forEach(course => course.renderCourse())
   }
+
+  findCourse(id)
+  {
+    return this.courses.find(course => {return course.id === id})
+  }
 }

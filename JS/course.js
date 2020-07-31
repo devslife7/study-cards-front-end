@@ -17,38 +17,8 @@ class Course {
     li.dataset.courseId = this.id
     ul.append(li)
 
-    this.addCourseListener(li)
+    li.addEventListener('click', () => courseLiHandler(this,li))
   }
-
-  addCourseListener(li) {
-    li.addEventListener('click', () => {
-      currentCourse = this      
-      const coursesList = document.getElementById('course-list')
-      // clear previously highlited course
-      for (const course of coursesList.childNodes) {
-        course.classList = ''
-      }
-      li.classList += 'course-list-hover-color'
-
-      const userCoursesCards = document.querySelector('div.user-courses-cards')
-      userCoursesCards.innerHTML = ''
-      console.log(this)
-      currentCourse.cards.forEach(card => this.renderCardAsLatex(card))//this.renderCard(card)
-    })
-  }
-
-  // renderCard(card) {
-  //   const userCoursesCards = document.querySelector('div.user-courses-cards')
-
-  //   const cardDiv = document.createElement('div')
-  //   const cardText = document.createElement('p')
-
-  //   cardDiv.classList += 'grid-item'
-  //   cardText.textContent = `${card.card_front}`
-  //   // render the cards to container
-  //   cardDiv.appendChild(cardText)
-  //   userCoursesCards.appendChild(cardDiv)
-  // }
 
   renderCardAsLatex(card)
   {
@@ -74,3 +44,20 @@ class Course {
   //make link to study()=>(not yet implemented)
   //no need to pass params, currentCourse already set in your li listener
 }
+const courseLiHandler = (course,li) =>
+{
+  currentCourse = currentUser.findCourse(course.id)
+  console.log(currentCourse)
+  const coursesList = document.getElementById('course-list')
+  // clear previously highlited course
+  for (const course of coursesList.childNodes) {
+    course.classList = ''
+  }
+  li.classList += 'course-list-hover-color'
+
+  const userCoursesCards = document.querySelector('div.user-courses-cards')
+  userCoursesCards.innerHTML = ''
+  currentCourse.cards.forEach(card => currentCourse.renderCardAsLatex(card))//this.renderCard(card)
+}
+
+
