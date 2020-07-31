@@ -99,7 +99,7 @@ a.navbar-item:hover {
   border-radius: 5px 0px 5px 5px;
   height: fit-content;
 }
-.user-courses-cards{
+.user-courses-cards {
   background-color: #eaeaea;
   flex-grow: 4;
   display: flex;
@@ -216,9 +216,15 @@ a.navbar-item:hover {
   width: 950px;
 }
 .delete-card-button {
-  background-color: red;
+  background-color: #f55842;
   border-radius: 30px;
   margin-top: 10px;
   padding: 0px 20px;
   flex-shrink: 3;
+}
+.delete-card-button:hover {
+  background-color: red;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 2px;
 }

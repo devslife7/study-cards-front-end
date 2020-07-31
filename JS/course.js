@@ -62,7 +62,7 @@ class Course {
     const cardLaTeX = document.createElement('img')
     const deleteCard = document.createElement('p')
     deleteCard.classList += 'delete-card-button'
-    deleteCard.textContent = 'X'
+    deleteCard.textContent = 'x'
     deleteCard.dataset.cardId = card.id
 
     cardDiv.classList += 'grid-item'

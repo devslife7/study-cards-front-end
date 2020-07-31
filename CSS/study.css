@@ -1,35 +1,34 @@
-.page.study
-{
-  padding-left: 300px;
+.page.study {
+  /* padding-left: 300px; */
+  /* display: flex;
+  justify-content: center; */
 }
-#study-container
-{
+#study-container {
   padding-left: 100px;
   display: flex;
-  background-color:turquoise;
+  background-color: turquoise;
   align-items: center;
   height: 500px;
   width: 650px;
+  display: flex;
+  justify-content: center;
 }
-#study-box
-{
+#study-box {
   height: 400px;
   width: 600px;
   background-color: #eaeaea;
   flex-grow: 4;
-  display: flex;  
+  display: flex;
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 0px 5px 5px 5px;
 }
-#study-box > div
-{  
+#study-box > div {
   align-items: center;
   background-color: white;
 }
-#card-side-front, #card-side-back
-{
-  
+#card-side-front,
+#card-side-back {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
@@ -39,10 +38,9 @@
   text-align: center;
   width: 70%;
   height: 70%; */
- 
 }
-.front-image,.back-image
-{
+.front-image,
+.back-image {
   padding-top: 30%;
   display: block;
   margin-left: auto;

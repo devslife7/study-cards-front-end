@@ -37,33 +37,36 @@ const deleteCardsListener = () => {
 }
 
 const deleteCard = cardId => {
-  console.log(cardId)
+  // console.log(cardId)
+  const confirmation = confirm('Are you sure you want to delete this card?')
 
-  // make fetch request to delete card
+  if (confirmation) {
+    // make fetch request to delete card
 
-  fetch(CARD_URL + cardId, { method: 'DELETE' })
-    .then(resp => resp.json())
-    .then(resp => {
-      console.log('return of delete fetch', resp)
+    fetch(CARD_URL + cardId, { method: 'DELETE' })
+      .then(resp => resp.json())
+      .then(resp => {
+        console.log('return of delete fetch', resp)
 
-      // delete card from the DOM on fetch response
-      // grab the p with id and delete its parent
-      document.querySelector(`p[data-card-id="${resp.id}"`).parentElement.remove()
+        // delete card from the DOM on fetch response
+        // grab the p with id and delete its parent
+        document.querySelector(`p[data-card-id="${resp.id}"`).parentElement.remove()
 
-      // make it persist if you come back to the course
-      // update currentCourse
-      currentCourse.cards = currentCourse.cards.filter(card => card.id != resp.id)
-      // currentCourse.renderCourse()
-      // console.log('currentCourse.cards', currentCourse.cards)
-      // console.log('resp.id', resp.id)
+        // make it persist if you come back to the course
+        // update currentCourse
+        currentCourse.cards = currentCourse.cards.filter(card => card.id != resp.id)
+        // currentCourse.renderCourse()
+        // console.log('currentCourse.cards', currentCourse.cards)
+        // console.log('resp.id', resp.id)
 
-      // update card list on courses ul list
-      // select corresponting li and reduce the span
-      const coursesUl = document.getElementById('course-list')
-      const courseLi = document.querySelector(`li[data-course-id="${currentCourse.id}"]`)
-      const cardsCountSpan = courseLi.querySelector('span')
-      cardsCountSpan.innerText = cardsCountSpan.innerText - 1
-    })
+        // update card list on courses ul list
+        // select corresponting li and reduce the span
+        const coursesUl = document.getElementById('course-list')
+        const courseLi = document.querySelector(`li[data-course-id="${currentCourse.id}"]`)
+        const cardsCountSpan = courseLi.querySelector('span')
+        cardsCountSpan.innerText = cardsCountSpan.innerText - 1
+      })
+  }
 }
 
 const navBarListeners = () => {
@@ -99,7 +102,7 @@ const addStudyCardsButtonListeners = () => {
       renderNewCard()
     }
     if (e.target.matches('div.study-cards-button') || e.target.parentElement.matches('div.study-cards-button')) {
-      renderStudyCardsPage();
+      renderStudyCardsPage()
       // add the feature for study cards here
     }
     if (e.target.matches('div.delete-course-button') || e.target.parentElement.matches('div.delete-course-button')) {
