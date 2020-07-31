@@ -63,7 +63,9 @@
 }
 #card-side-front img,
 #card-side-back img {
-  min-width: 300px;
+  /* min-width: 300px; */
+  max-width: 200px;
+  max-height: 200px;
   /* height: 100px; */
   /* margin: 0px 10px; */
 }
