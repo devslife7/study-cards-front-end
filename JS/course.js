@@ -16,7 +16,8 @@ class Course {
     li.innerText = `${this.name} (${this.cards.length})`
     li.dataset.courseId = this.id
     ul.append(li)
-
+    if(currentCourse && currentUser.findCourse(currentCourse.id))
+      courseLiHandler(this,li)
     li.addEventListener('click', () => courseLiHandler(this,li))
   }
 

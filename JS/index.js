@@ -100,12 +100,7 @@ const createNewCourse = e => {
   // hide form again
   // show the plus button again and done
 }
-
-const testNewCard = () => {
-  currentCourse = {}
-  currentCourse.id = 1
-  renderNewCard()
-}
+ 
 // showPage(string):boolean
 // displays ONLY the divs with the <pageName> class
 // AND sets that page as currentPageDiv
