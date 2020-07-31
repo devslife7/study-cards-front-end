@@ -99,7 +99,7 @@ a.navbar-item:hover {
   border-radius: 5px 0px 5px 5px;
   height: fit-content;
 }
-.user-courses-cards {
+.user-courses-cards{
   background-color: #eaeaea;
   flex-grow: 4;
   display: flex;

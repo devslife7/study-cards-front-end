@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
     <link rel="stylesheet" href="./CSS/style.css" />
     <link rel="stylesheet" href="./CSS/newCardPage.css" />
+    <link rel="stylesheet" href="./CSS/study.css" />
+    
     <!-- <link rel="stylesheet" href="./CSS/stylesheet.css"> -->
     <script src="https://kit.fontawesome.com/66ad2550a3.js" crossorigin="anonymous"></script>
 
@@ -24,7 +26,7 @@
     <script defer src="./JS/user.js"></script>
     <script defer src="./JS/linkedList.js"></script>
     <script defer src="./JS/study.js"></script>
-    <!-- <script src="./JS/liveJS.js#CSS"></script> -->
+    <script src="./JS/liveJS.js#CSS"></script>
   </head>
 
   <body>
@@ -178,7 +180,18 @@
     <!-- New Card Page Ends -->
 
     <!-- Study Page Starts -->
-    <div class="study page container"></div>
+    <div class="study page">
+      <div id="study-container">
+        <div id="study-box">
+          <div id="card-side-front"></div>
+          <div id="card-side-back" class="hidden"></div>
+        </div>
+        <a id="correct" class="button is-primary"></a>
+        <a id="incorrect" class="button is-primary"></a>
+      </div>
+      
+    </div>
+
     <!-- Study Page Ends -->
 
     <!-- Footer Starts -->

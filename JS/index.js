@@ -58,7 +58,7 @@ const addStudyCardsButtonListeners = () => {
       renderNewCard()
     }
     if (e.target.matches('div.study-cards-button') || e.target.parentElement.matches('div.study-cards-button')) {
-      console.log('study button clicked')
+      renderStudyCardsPage();
       // add the feature for study cards here
     }
     if (e.target.matches('div.delete-course-button') || e.target.parentElement.matches('div.delete-course-button')) {
