@@ -26,6 +26,10 @@ const handleStudyClick = (e) =>
     studyBack.className = "hidden"
     studyFront.className = "";
   }
+  if (e.target.id === "next")
+  {
+    //
+  }
 }
 
 const showFirstCard = (cards) =>
