@@ -18,6 +18,8 @@ class Course {
     ul.append(li)
     if(currentCourse && currentUser.findCourse(currentCourse.id))
       courseLiHandler(this,li)
+    else
+      courseLiHandler(currentUser.courses[0],li)
     li.addEventListener('click', () => courseLiHandler(this,li))
   }
 
