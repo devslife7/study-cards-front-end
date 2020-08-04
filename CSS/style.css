@@ -197,18 +197,6 @@ a.navbar-item:hover {
   background-color: #ff563f;
   cursor: pointer;
 }
-/* #course-list li span {
-  background-color: #f29185;
-  border-radius: 20px;
-  width: 100px;
-  margin-right: 10px;
-  padding: 2px 8px 4px 7px;
-} */
-/* #course-list li span:hover {
-  background-color: #ec4731;
-  padding: 4px 10px 6px 9px;
-  font-size: 16px;
-} */
 .cards-buttons-container {
   /* background-color: red; */
   display: flex;
